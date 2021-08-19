@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>   
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="footer.css">
+
+
+
+    <title>Cse498R</title>
+  </head>
+  <body>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Covid/FaceMask Detection</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="methodology.html">Methodology</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="aboutUs.html">About Us</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Choose Test
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="faceMask.html">Face Mask Detection</a>
+                <a class="dropdown-item" href="covid.html">Covid Detection</a>
+              </div>
+            </li>
+            
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+    <div class="container">
+
+      <h2 class="header_one ml2">Creating our Web Application to Recognize A person have covid or not and the person is wearing Face mask or not</h2> 
+      
+      <!-- Wrapping every letter in span start -->
+
+      <script type="text/javascript">
+        var textWrapper = document.querySelector('.ml2');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({loop: true})
+          .add({
+            targets: '.ml2 .letter',
+            scale: [4,1],
+            opacity: [0,1],
+            translateZ: 0,
+            easing: "easeOutExpo",
+            duration: 950,
+            delay: (el, i) => 70*i
+          }).add({
+            targets: '.ml2',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+          });
+          </script>
+
+
+
+
+    <div class="mystyle-contain1 ">
+      <div class="row  myAfter-Option-holder-home">
+        <p>
+          This page is focused on the covid detection and face mask detection and classify that image using backend code. This website will tell us by examine the x-ray image or the face image weather the person has covid or not and the person wearing face mask or not. <a class="inline-link" href="covid.html">Test Your X-ray image</a> if you have covid symptom. Test the person wearing the <a class="inline-link" href="faceMask.html">Face Mask</a> or not. and know who we are by clicking About us link<a class="inline-link" href="aboutus.html"> About Us</a> 
+        </p>
+        <img src="image/back.jpg" class="image_center">
+      </div>
+      
+      
+    </div>
+
+    <div class="mystyle-contain2">
+      <div class="row myAfter-Option-holder-home">
+        <p>
+          The recognition of human images is not so much about face recognition at all – it is much more image detection finding what includes in the image! It has been proven that the first step in automatic facial recognition – the accurate detection of human images in arbitrary scenes, is the most important process involved. When images can be contain with lots of things, the recognition step afterwards is not so complicated anymore. This is why this page tries to gather all available information about the process of automatically detecting images!
+        </p>
+      </div>
+      
+      
+    </div>
+
+    
+  
+  
+
+  </div>
+
+
+  <div class="container">    
+    <div class="mystyle-contain1 ">
+      <div class="row  myAfter-Option-holder-home">
+        <p>
+          This page is focused on the covid detection and face mask detection and classify that image using backend code. This website will tell us by examine the x-ray image or the face image weather the person has covid or not and the person wearing face mask or not. <a class="inline-link" href="covid.html">Test Your X-ray image</a> if you have covid symptom. Test the person wearing the <a class="inline-link" href="faceMask.html">Face Mask</a> or not. and know who we are by clicking About us link<a class="inline-link" href="aboutus.html"> About Us</a> 
+        </p>
+        <img src="image/facemask.jpg" class="image_center">
+      </div>
+      
+      
+    </div>
+
+    <div class="mystyle-contain2">
+      <div class="row myAfter-Option-holder-home">
+        <p>
+          The recognition of human images is not so much about face recognition at all – it is much more image detection finding what includes in the image! It has been proven that the first step in automatic facial recognition – the accurate detection of human images in arbitrary scenes, is the most important process involved. When images can be contain with lots of things, the recognition step afterwards is not so complicated anymore. This is why this page tries to gather all available information about the process of automatically detecting images!
+        </p>
+      </div>
+      
+      
+    </div>
+
+    
+  
+  
+
+  </div>
+
+  <!-- footer -->
+
+  <footer class="w-100 py-4 flex-shrink-0">
+        <div class="container py-4">
+            <div class="row gy-4 gx-5">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="h1 text-black">FB.</h5>
+                    <p class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                    <p class="small text-muted mb-0">&copy; Copyrights. All rights reserved. <a class="text-primary" href="#">Northsouth University</a></p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-black mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-black mb-3">Quick links</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Get started</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-black mb-3">Newsletter</h5>
+                    <p class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-primary" id="button-addon2" type="button"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

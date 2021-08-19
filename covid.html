@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    <title>Cse498R</title>
+  </head>
+  <body>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Covid/FaceMask Detection</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="methodology.html">Methodology</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="aboutUs.html">About Us</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Choose Test
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="faceMask.html">Face Mask Detection</a>
+                <a class="dropdown-item" href="covid.html">Covid Detection</a>
+              </div>
+            </li>
+            
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>WebCam On!</strong> Please Allow acess to you web cam, otherwise this program will not work.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+     <div class="container">
+       <h2 class="header_one ml2">Instant Covid Detection</h2> 
+      
+      <!-- Wrapping every letter in span start -->
+
+      <script type="text/javascript">
+        var textWrapper = document.querySelector('.ml2');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({loop: true})
+          .add({
+            targets: '.ml2 .letter',
+            scale: [4,1],
+            opacity: [0,1],
+            translateZ: 0,
+            easing: "easeOutExpo",
+            duration: 950,
+            delay: (el, i) => 70*i
+          }).add({
+            targets: '.ml2',
+            opacity: 0,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000
+          });
+          </script>
+          <!-- Wrapping every letter in span end -->
+
+
+
+          <button type="button" class="button" onclick="init()">Start</button>
+          <div id="webcam-container"></div>
+          <div id="label-container"></div>
+          <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+          <script type="text/javascript">
+              // More API functions here:
+              // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+              // the link to your model provided by Teachable Machine export panel
+              const URL = "https://teachablemachine.withgoogle.com/models/aMOfmQ1cc/";
+
+              let model, webcam, labelContainer, maxPredictions;
+
+              // Load the image model and setup the webcam
+              async function init() {
+                  const modelURL = URL + "model.json";
+                  const metadataURL = URL + "metadata.json";
+
+                  // load the model and metadata
+                  // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                  // or files from your local hard drive
+                  // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                  model = await tmImage.load(modelURL, metadataURL);
+                  maxPredictions = model.getTotalClasses();
+
+                  // Convenience function to setup a webcam
+                  const flip = true; // whether to flip the webcam
+                  webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+                  await webcam.setup(); // request access to the webcam
+                  await webcam.play();
+                  window.requestAnimationFrame(loop);
+
+                  // append elements to the DOM
+                  document.getElementById("webcam-container").appendChild(webcam.canvas);
+                  labelContainer = document.getElementById("label-container");
+                  for (let i = 0; i < maxPredictions; i++) { // and class labels
+                      labelContainer.appendChild(document.createElement("div"));
+                  }
+              }
+
+              async function loop() {
+                  webcam.update(); // update the webcam frame
+                  await predict();
+                  window.requestAnimationFrame(loop);
+              }
+
+              // run the webcam image through the image model
+              async function predict() {
+                  // predict can take in an image, video or canvas html element
+                  const prediction = await model.predict(webcam.canvas);
+                  for (let i = 0; i < maxPredictions; i++) {
+                      const classPrediction =
+                          prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                      labelContainer.childNodes[i].innerHTML = classPrediction;
+                  }
+              }
+          </script>
+
+
+
+     </div> 
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
